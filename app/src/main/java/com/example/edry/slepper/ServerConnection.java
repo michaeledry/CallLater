@@ -107,21 +107,21 @@ public class ServerConnection extends IntentService {
             while(Active)
             {
                 Thread.sleep(100);
+                /*
                 if(IncomingCallData.getDatabaseStatusFeild().equals("MaxVol"))
                 {
                     AudioManager MyVolume =  (AudioManager)getSystemService(Context.AUDIO_SERVICE);
                     MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
                     System.out.println("Flow: FlowOnIncomingNumber : maxVol ");
+                    Thread.sleep(3000);
+                    break;
 
                 }
+                */
             }
 
             //MyPhoneState TakeActionOnCall = new MyPhoneState();
             //TakeActionOnCall.onCallStateChanged(getApplication(),1,null);
-
-
-
-
 
         }
         catch(InterruptedException e)

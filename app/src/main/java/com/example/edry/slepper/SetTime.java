@@ -125,15 +125,9 @@ public class SetTime extends AppCompatActivity {
                 IntentFilter filter = new IntentFilter();
                 registerReceiver(Caller_Receiver, filter);
 
-            try
-            {
-                AudioManager MyVolume;
-                MyVolume =  (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("broadcast audioState defual");
-            }
+                MyPhoneState TakeActionOnCall = new MyPhoneState();
+                TakeActionOnCall.onCallStateChanged(getApplicationContext(),0,null);
+
 
 //                goHomeScreen();
 

@@ -71,11 +71,19 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.SEND_SMS},1);
 
 
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        int permissionCheckForPhoneState = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+        if (permissionCheckForPhoneState != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_PHONE_STATE}, 1);
         }
+
+
+        int permissionCheckForOutGoingCall = ContextCompat.checkSelfPermission(this, Manifest.permission.PROCESS_OUTGOING_CALLS);
+
+       // if (permissionCheckForOutGoingCall != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.PROCESS_OUTGOING_CALLS}, 1);
+        //}
+
 
     }
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {

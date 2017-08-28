@@ -3,6 +3,7 @@ package com.example.edry.slepper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.telephony.CellInfo;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -29,10 +30,11 @@ public class MyReceiver extends BroadcastReceiver {
 
         PhoneState = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
 
-        adiitionalPhoneNumber = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+        if(intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL))
 
-        System.out.println("Flow: MyReceiver : onReceive  " + intent.getAction() + adiitionalPhoneNumber);
+            handleOnOutgoingCall(context, intent);
 
+        else {
 
             int curState = getState();
 
@@ -52,7 +54,6 @@ public class MyReceiver extends BroadcastReceiver {
 
                 case TelephonyManager.CALL_STATE_OFFHOOK:
 
-                    handleOnOutgoingCall(context, intent);
 
                     break;
 
@@ -63,8 +64,11 @@ public class MyReceiver extends BroadcastReceiver {
 
 
             }
-            System.out.println("Flow: MyReceiver : case "+ curState);
 
+            System.out.println("Flow: MyReceiver : case " + curState);
+        }
+
+        System.out.println("Flow: MyReceiver : onReceive  " + intent.getAction() + adiitionalPhoneNumber);
 
         }
 
@@ -79,7 +83,9 @@ public class MyReceiver extends BroadcastReceiver {
     private void handleOnOutgoingCall(Context context, Intent intent)
     {
 
-            Intent newCallOutIntent = new Intent(context, ServerConnection.class);
+
+        adiitionalPhoneNumber = intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER);
+        Intent newCallOutIntent = new Intent(context, ServerConnection.class);
             newCallOutIntent.putExtra("EXTRA_STATE", "outGoingCall");
             newCallOutIntent.putExtra("EXTRA_NUMBER", adiitionalPhoneNumber);
             context.startService(newCallOutIntent);
@@ -90,7 +96,8 @@ public class MyReceiver extends BroadcastReceiver {
 
     {
 
-            System.out.println("Flow: MyReceiver : CALL_STATE_Ring  " + adiitionalPhoneNumber);
+        adiitionalPhoneNumber = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+        System.out.println("Flow: MyReceiver : CALL_STATE_Ring  " + adiitionalPhoneNumber);
             Intent newCallInIntent = new Intent(context, ServerConnection.class);
             newCallInIntent.putExtra("EXTRA_STATE","IncomingCall");
             newCallInIntent.putExtra("EXTRA_NUMBER",adiitionalPhoneNumber);

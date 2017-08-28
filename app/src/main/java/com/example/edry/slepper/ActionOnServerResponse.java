@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ActionOnServerResponse {
 
     private String peerPhoneNumber;
-    String jobDone = "Mute";
+    private String jobDone = "Mute";
     protected static final String YesEmergencyNotification = "Yes";
     Context myContext;
 
@@ -89,7 +89,7 @@ public class ActionOnServerResponse {
 
                 if(dataSnapshot.getValue(String.class).equals(YesEmergencyNotification))
                 {
-                    //setMaxVolume();
+                    setMaxVolume();
 
                     jobDone = "MaxVol";
                 }

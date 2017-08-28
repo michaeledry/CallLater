@@ -39,17 +39,15 @@ public class HandlerOnIncomingCall  extends OnCallDatabase{
 
         switch(ans)
         {
-            case 0:
+            case 0: // Application does not existed in caller phone
 
                 //ActionHandler.SendSms(smsMassageOnNull);
 
                 break;
 
-            case 1:
-                System.out.println("ActionHandler.ListenForCallStatus  " );
+            case 1: //  Application exists in caller phone
+
                  ActionHandler.ListenForCallStatus(Cref.child(ActiveUsersPath).child(this.myPhoneNumber),Cref.child(ActiveUsersPath).child(this.myPhoneNumber).child("Emergency"));
-
-
 
                 break;
 
