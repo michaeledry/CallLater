@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "1052767643888",
+    "firebase_url": "https://fir-sleeper.firebaseio.com",
+    "project_id": "firebase-sleeper",
+    "storage_bucket": "firebase-sleeper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052767643888:android:a56fbc56088be965",
+        "android_client_info": {
+          "package_name": "com.example.edry.slepper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052767643888-fd7s6acs85cmr3mp0q4ahpd8cg6377de.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1052767643888-ci83tgo36vbg08f48bu2io285oa4roum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edry.slepper",
+            "certificate_hash": "998d2b89f32929c01c106cbfd4558ecb401d4702"
+          }
+        },
+        {
+          "client_id": "1052767643888-p1c451talhipp6o4alqhtbri2fcoraml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9h7Tet0BmsusQoX8pNV7-zt-ZArXIG9s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052767643888-fd7s6acs85cmr3mp0q4ahpd8cg6377de.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
