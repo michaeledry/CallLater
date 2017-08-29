@@ -122,7 +122,7 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
         registerReceiver(Caller_Receiver, filter);
 
         MyPhoneState TakeActionOnCall = new MyPhoneState();
-        TakeActionOnCall.onCallStateChanged(getApplicationContext(),0,null);
+        TakeActionOnCall.onCallStateChanged(getApplicationContext(),2,null);
 
         DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Available");
 

@@ -114,7 +114,7 @@ public class MyReceiver extends BroadcastReceiver {
         context.stopService(newIntent);
         MyPhoneState TakeActionOnCall = new MyPhoneState();
         DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(context,"Available");
-        TakeActionOnCall.onCallStateChanged(context,2,null);
+        TakeActionOnCall.onCallStateChanged(context,0,null);
     }
 
     private int getState( )

@@ -45,6 +45,10 @@ public class MyPhoneState extends PhoneStateListener{
             case 0:
                 try {
                     MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0,0);
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                    Ringtone r = RingtoneManager.getRingtone(context, notification);
+                    r.stop();
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -65,6 +69,9 @@ public class MyPhoneState extends PhoneStateListener{
                     Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                     Ringtone r = RingtoneManager.getRingtone(context, notification);
                     r.play();
+
+
+
 
                     System.out.println("Flow : onCallStateChanged : Case 1 set to Maxvolume , "+ MyVolume.isSpeakerphoneOn());
 
@@ -88,7 +95,6 @@ public class MyPhoneState extends PhoneStateListener{
             case 2:
 
                 try {
-                    MyVolume.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                     MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
 
                 }
