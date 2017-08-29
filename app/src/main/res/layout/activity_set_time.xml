@@ -50,20 +50,20 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Blogoutuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="129dp"
         android:text="Log out"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center_horizontal"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="129dp"
-        app:layout_constraintHorizontal_bias="0.216" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
     <include
         android:id="@+id/include"

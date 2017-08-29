@@ -26,7 +26,7 @@ public class HandlerOnIncomingCall  extends OnCallDatabase{
 
         CheckDataBaseState();
 
-        System.out.println("Flow: HandlerOnOutgoingCall : constructor ");
+        System.out.println("Flow: HandlerOnIncomingCall : constructor ");
 
     }
 

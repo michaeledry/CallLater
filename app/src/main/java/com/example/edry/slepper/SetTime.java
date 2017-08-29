@@ -24,18 +24,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class SetTime extends AppCompatActivity {
+public class SetTime extends AppCompatActivity implements View.OnClickListener{
 
     private Button LogOut;
     private Button StartApp;
     private Button PendAll;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TimePicker timePicker;
+
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
-    private Intent sleepLimiter;
-    private String myPhoneNum;
 
     public MyReceiver Caller_Receiver;
 
@@ -46,111 +46,19 @@ public class SetTime extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myPhoneNum = (String) getIntent().getStringExtra("phoneNumber");
-        Toast.makeText(getApplicationContext(),myPhoneNum,Toast.LENGTH_LONG).show();
-
-        LogOut = (Button)findViewById(R.id.button2);
-        LogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth = FirebaseAuth.getInstance();
-                System.out.println(mAuth.getCurrentUser().toString());
-                signOut();
-                Intent backLoginPage = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(backLoginPage);
-
-            }
-        });
-
+        LogOut = (Button)findViewById(R.id.Blogoutuser);
         PendAll = (Button) findViewById(R.id.PendAll);
-        PendAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                DisconnectionMassage jobDone = new DisconnectionMassage(getApplicationContext());
-                OffUserMassge OffStatusmassage = new OffUserMassge(getApplicationContext());
-
-                try
-                {
-
-
-                    Caller_Receiver = new MyReceiver();
-                    IntentFilter filter = new IntentFilter();
-                    registerReceiver(Caller_Receiver, filter);
-                    Thread.sleep(1000);
-
-
-                    unregisterReceiver(Caller_Receiver);
-
-                }
-                catch (Exception e)
-                {
-                 e.printStackTrace();
-                    DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed01");
-                }
-
-
-                try
-                {
-                    AudioManager MyVolume = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                    MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"Erro while modifying ringer", Toast.LENGTH_LONG).show();
-                }
-
-                goHomeScreen();
-            }
-        });
-
-
         StartApp = (Button)findViewById(R.id.BstartApp);
-        StartApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent newIntent = new Intent(getApplicationContext(),KeepAliveService.class);
-                newIntent.putExtra("phoneNumber", myPhoneNum);
-                getApplicationContext().startService(newIntent);
-                DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(getApplicationContext(),"Available");
+        LogOut.setOnClickListener(this);
+        PendAll.setOnClickListener(this);
+        StartApp.setOnClickListener(this);
 
-
-
-                //alarmMgr.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() +
-                  //       1000, alarmIntent);
-
-
-                Caller_Receiver = new MyReceiver();
-                IntentFilter filter = new IntentFilter();
-                registerReceiver(Caller_Receiver, filter);
-
-                MyPhoneState TakeActionOnCall = new MyPhoneState();
-                TakeActionOnCall.onCallStateChanged(getApplicationContext(),0,null);
-
-
-//                goHomeScreen();
-
-            }
-        });
-
-        timePicker = (TimePicker)findViewById(R.id.timePicker);
-        alarmMgr = (AlarmManager)getApplicationContext().getSystemService(getApplicationContext().ALARM_SERVICE);
-        sleepLimiter = new Intent(getApplicationContext(),appTermination.class);
-        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(),0,sleepLimiter,0);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
     }
 
-    @Override
-    protected void onStop() {
 
-        super.onStop();
-        System.out.println("Flow: SetTime : onDestroy  " );
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -158,6 +66,92 @@ public class SetTime extends AppCompatActivity {
 
     private void signOut() {
         mAuth.signOut();
+    }
+
+
+    public void onClick(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.BstartApp:
+
+                onStartButton();
+
+                break;
+
+            case R.id.PendAll:
+
+                onEndAllButton();
+
+                break;
+
+            case R.id.Blogoutuser:
+
+                onSignOutButton();
+
+                break;
+
+            default:
+
+                break;
+
+        }
+    }
+
+
+    private void onSignOutButton()
+    {
+        mAuth = FirebaseAuth.getInstance();
+        System.out.println(mAuth.getCurrentUser().toString());
+        signOut();
+        Intent backLoginPage = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(backLoginPage);
+    }
+
+    private void onStartButton()
+    {
+        System.out.println("Flow: SetTime : try to scedule keepalive process  " );
+
+        alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        Intent intentI = new Intent(getApplicationContext(), KeepAliveReciever.class);
+        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intentI, 0);
+        alarmMgr.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 1000 * 60, alarmIntent);
+
+        Caller_Receiver = new MyReceiver();
+        IntentFilter filter = new IntentFilter();
+        registerReceiver(Caller_Receiver, filter);
+
+        MyPhoneState TakeActionOnCall = new MyPhoneState();
+        TakeActionOnCall.onCallStateChanged(getApplicationContext(),0,null);
+
+        DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Available");
+
+
+         goHomeScreen();
+    }
+
+    private void onEndAllButton()
+    {
+        DisconnectionMassage jobDone = new DisconnectionMassage(getApplicationContext());
+        OffUserMassge OffStatusmassage = new OffUserMassge(getApplicationContext());
+        MyPhoneState TakeActionOnCall = new MyPhoneState();
+        TakeActionOnCall.onCallStateChanged(getApplicationContext(),3,null);
+        alarmMgr.cancel(alarmIntent);
+
+        try
+        {
+            unregisterReceiver(Caller_Receiver);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed01");
+        }
+
+
+
+
+        goHomeScreen();
     }
 
     private void goHomeScreen()

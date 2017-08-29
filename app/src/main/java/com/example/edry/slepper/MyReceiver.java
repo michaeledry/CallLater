@@ -96,6 +96,8 @@ public class MyReceiver extends BroadcastReceiver {
 
     {
 
+        //MyPhoneState TakeActionOnCall = new MyPhoneState();
+        //TakeActionOnCall.onCallStateChanged(context,0,null);
         adiitionalPhoneNumber = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
         System.out.println("Flow: MyReceiver : CALL_STATE_Ring  " + adiitionalPhoneNumber);
             Intent newCallInIntent = new Intent(context, ServerConnection.class);
@@ -112,7 +114,7 @@ public class MyReceiver extends BroadcastReceiver {
         context.stopService(newIntent);
         MyPhoneState TakeActionOnCall = new MyPhoneState();
         DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(context,"Available");
-        TakeActionOnCall.onCallStateChanged(context,0,null);
+        TakeActionOnCall.onCallStateChanged(context,2,null);
     }
 
     private int getState( )

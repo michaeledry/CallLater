@@ -18,6 +18,10 @@ public class DisconnectionActiveUserMassage extends RealTimeDatabase {
 
 
 
+    //expireDate
+    //
+
+
     public DisconnectionActiveUserMassage(Context contex, String status) {
 
         super(contex, status);

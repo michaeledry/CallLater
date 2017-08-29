@@ -13,13 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
+
 public class ServerConnection extends IntentService {
 
     private static boolean Active = false;
@@ -107,21 +101,9 @@ public class ServerConnection extends IntentService {
             while(Active)
             {
                 Thread.sleep(100);
-                /*
-                if(IncomingCallData.getDatabaseStatusFeild().equals("MaxVol"))
-                {
-                    AudioManager MyVolume =  (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-                    MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
-                    System.out.println("Flow: FlowOnIncomingNumber : maxVol ");
-                    Thread.sleep(3000);
-                    break;
 
-                }
-                */
             }
 
-            //MyPhoneState TakeActionOnCall = new MyPhoneState();
-            //TakeActionOnCall.onCallStateChanged(getApplication(),1,null);
 
         }
         catch(InterruptedException e)

@@ -26,6 +26,9 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
     protected static final String KeepAliveStatusPath = "Status";
 
     protected static final String ActiveUsersPath = "ActiveUsers";
+    protected static final String expireDatePath = "ExpireDate";
+    protected static final String RingerLevelPath = "RingerLevel";
+    protected static final String dndPath = "DND-Speaker";
 
     protected static final String smsMassageOnNull = "I'm inviting you to download my app";
 
@@ -35,7 +38,6 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
     protected static String PhoneNum;
 
     protected DatabaseReference Cref;
-    protected DatabaseReference myRef;
 
     private boolean IsRecNotification = false;
 
@@ -46,8 +48,6 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
     public OnCallDatabase(Context contex, String PhoneNum) {
 
         super(contex, BussyStatus);
-
-        System.out.println("Flow: OnCallDatabase : OnCallDatabase ");
 
         this.PhoneNum = PhoneNum;
 
@@ -72,7 +72,6 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 handleServerResponse(dataSnapshot.getValue(String.class));
-
 
             }
 

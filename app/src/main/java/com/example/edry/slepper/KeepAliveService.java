@@ -21,9 +21,11 @@ public class KeepAliveService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         System.out.println("Flow: KeepAliveService ");
-        phoneNumber = intent.getStringExtra("phoneNumber");
         keepAlive keepAliveMassage = new keepAlive(getApplicationContext());
         keepAliveMassage.pushKeepAliveUpdateToServer();
+        keepAliveMassage.updatedndLevelEntry();
+        keepAliveMassage.updateRingerLevelEntry();
+        keepAliveMassage.updateTimeStempEntry();
 
     }
 
