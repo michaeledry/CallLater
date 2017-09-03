@@ -1,8 +1,10 @@
 package com.example.edry.slepper;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
+import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +40,18 @@ public class ActionOnServerResponse {
         newIntent.putExtra("phoneNum", peerPhoneNumber);
         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         System.out.println("Flow: open popup: ") ;
-        myContext.startActivity(newIntent);
+        try
+        {
+            Thread.sleep(5000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            myContext.startActivity(newIntent);
+        }
+
     }
 
     public void setMaxVolume()

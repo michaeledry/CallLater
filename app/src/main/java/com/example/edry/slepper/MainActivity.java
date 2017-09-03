@@ -3,6 +3,7 @@ package com.example.edry.slepper;
 import android.*;
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        String Extra = getIntent().getStringExtra("KILL");
+        if(Extra != null && Extra.equals("TRUE"))
+        {
+            finish();
+            //onDestroy();
+        }
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
+
+
 
 
 

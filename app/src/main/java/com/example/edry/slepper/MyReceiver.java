@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.CellInfo;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -109,17 +110,13 @@ public class MyReceiver extends BroadcastReceiver {
 
     private void handleOnIdleState(Context context, Intent intent)
     {
+
         Intent newIntent = new Intent(context, ServerConnection.class);
         context.stopService(newIntent);
         MyPhoneState TakeActionOnCall = new MyPhoneState();
         DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(context,"Available");
         TakeActionOnCall.onCallStateChanged(context,0,null);
 
-        AudioManager manager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-        if(manager.isMusicActive())
-        {
-            System.out.println("Flow: MyReceiver : Music is On  " );
-        }
     }
 
 

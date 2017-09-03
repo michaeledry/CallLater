@@ -22,7 +22,7 @@ public class KeepAliveService extends IntentService {
 
         System.out.println("Flow: KeepAliveService ");
         keepAlive keepAliveMassage = new keepAlive(getApplicationContext());
-        keepAliveMassage.pushKeepAliveUpdateToServer();
+        //keepAliveMassage.pushKeepAliveUpdateToServer();
         keepAliveMassage.updatedndLevelEntry();
         keepAliveMassage.updateRingerLevelEntry();
         keepAliveMassage.updateTimeStempEntry();
