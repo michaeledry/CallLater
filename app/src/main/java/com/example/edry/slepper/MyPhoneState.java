@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Build;
@@ -44,10 +45,13 @@ public class MyPhoneState extends PhoneStateListener{
         {
             case 0:
                 try {
+
+                    Intent ringerServic = new Intent(context,RingtonePlayerService.class);
+
+                    context.stopService(ringerServic);
+
+                    //if(MyVolume.)
                     MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0,0);
-                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                    Ringtone r = RingtoneManager.getRingtone(context, notification);
-                    r.stop();
 
 
                 } catch (Exception e) {
@@ -66,14 +70,9 @@ public class MyPhoneState extends PhoneStateListener{
 
                    MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
 
-                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                    Ringtone r = RingtoneManager.getRingtone(context, notification);
-                    r.play();
+                   Intent ringerServic = new Intent(context,RingtonePlayerService.class);
 
-
-
-
-                    System.out.println("Flow : onCallStateChanged : Case 1 set to Maxvolume , "+ MyVolume.isSpeakerphoneOn());
+                   context.startService(ringerServic);
 
 
                 } catch (Exception e) {

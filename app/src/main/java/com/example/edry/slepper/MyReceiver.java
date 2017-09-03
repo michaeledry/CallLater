@@ -54,6 +54,7 @@ public class MyReceiver extends BroadcastReceiver {
 
                 case TelephonyManager.CALL_STATE_OFFHOOK:
 
+                    handleHookUpState( context,  intent);
 
                     break;
 
@@ -96,8 +97,6 @@ public class MyReceiver extends BroadcastReceiver {
 
     {
 
-        //MyPhoneState TakeActionOnCall = new MyPhoneState();
-        //TakeActionOnCall.onCallStateChanged(context,0,null);
         adiitionalPhoneNumber = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
         System.out.println("Flow: MyReceiver : CALL_STATE_Ring  " + adiitionalPhoneNumber);
             Intent newCallInIntent = new Intent(context, ServerConnection.class);
@@ -115,7 +114,24 @@ public class MyReceiver extends BroadcastReceiver {
         MyPhoneState TakeActionOnCall = new MyPhoneState();
         DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(context,"Available");
         TakeActionOnCall.onCallStateChanged(context,0,null);
+
+        AudioManager manager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        if(manager.isMusicActive())
+        {
+            System.out.println("Flow: MyReceiver : Music is On  " );
+        }
     }
+
+
+    private void handleHookUpState(Context context, Intent intent)
+    {
+
+        Intent ringerServic = new Intent(context,RingtonePlayerService.class);
+
+
+        context.stopService(ringerServic);
+    }
+
 
     private int getState( )
     {
