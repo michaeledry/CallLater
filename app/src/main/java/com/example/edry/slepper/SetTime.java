@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SetTime extends AppCompatActivity implements View.OnClickListener{
 
-    private Button LogOut;
+
     private Button StartApp;
     private Button PendAll;
 
@@ -41,7 +41,7 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
     private MyReceiver Caller_Receiver = null;
     private IntentFilter filter = null;
 
-    private static boolean onPeriod = false;
+    public static boolean onPeriod = false;
 
 
 
@@ -52,11 +52,10 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        LogOut = (Button)findViewById(R.id.Blogoutuser);
         PendAll = (Button) findViewById(R.id.PendAll);
         StartApp = (Button)findViewById(R.id.BstartApp);
 
-        LogOut.setOnClickListener(this);
+
         PendAll.setOnClickListener(this);
         StartApp.setOnClickListener(this);
 
@@ -67,6 +66,7 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
 
     protected void onDestroy() {
         super.onDestroy();
+        System.out.println("SetTime.onDestroy :  " );
 
     }
 
@@ -91,12 +91,6 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
 
                 break;
 
-            case R.id.Blogoutuser:
-
-                onSignOutButton();
-
-                break;
-
             default:
 
                 break;
@@ -105,105 +99,36 @@ public class SetTime extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-    private void onSignOutButton()
-    {
-        mAuth = FirebaseAuth.getInstance();
-        System.out.println(mAuth.getCurrentUser().toString());
-        signOut();
-        Intent backLoginPage = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(backLoginPage);
-    }
-
     private void onStartButton()
     {
 
-        alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        Intent intentI = new Intent(getApplicationContext(), KeepAliveReciever.class);
-        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intentI, 0);
-        alarmMgr.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 1000 * 60, alarmIntent);
+        Intent newCallOutIntent = new Intent(getApplicationContext(), LunchSleeperService.class);
 
-        keepAlive keepAliveMassage = new keepAlive(getApplicationContext());
-        keepAliveMassage.pushKeepAliveUpdateToServer();
+        startService(newCallOutIntent);
 
-        if(Caller_Receiver == null) {
+        //this.onPeriod = true;
 
-            System.out.println("Flow: SetTime : init Caller_Receiver  " );
+        //Intent CloseApp = new Intent(getApplicationContext(),MainActivity.class);
+        //CloseApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            Caller_Receiver = new MyReceiver();
-            if(filter ==null)
-            {
-                filter = new IntentFilter("android.intent.action.PHONE_STATE" );
-                filter.addAction("android.intent.action.NEW_OUTGOING_CALL");
+        //CloseApp.putExtra("KILL","TRUE");
+        //startActivity(CloseApp);
 
-                System.out.println("Flow: SetTime : init filter  " );
+        goHomeScreen();
 
-            }
-
-            registerReceiver(Caller_Receiver, filter);
-
-        }
-
-
-
-        MyPhoneState TakeActionOnCall = new MyPhoneState();
-        TakeActionOnCall.onCallStateChanged(getApplicationContext(),2,null);
-
-        DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Available");
-
-
-         goHomeScreen();
     }
 
     private void onEndAllButton()
     {
-        System.out.println("Flow: SetTime : start  " );
 
-        DisconnectionMassage jobDone = new DisconnectionMassage(getApplicationContext());
-        OffUserMassge OffStatusmassage = new OffUserMassge(getApplicationContext());
-        MyPhoneState TakeActionOnCall = new MyPhoneState();
-        TakeActionOnCall.onCallStateChanged(getApplicationContext(),3,null);
+        Intent newCallOutIntent = new Intent(getApplicationContext(), LunchSleeperService.class);
 
-        try {
-            alarmMgr.cancel(alarmIntent);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("Flow: SetTime : crashed alarmMgr " );
+        stopService(newCallOutIntent);
 
-            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed02");
-        }
+        //this.onPeriod = false;
 
-        try
-        {
-            System.out.println("Flow: SetTime : unregisterReceiver  " );
-
-            unregisterReceiver(Caller_Receiver);
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-
-            System.out.println("Flow: SetTime : crashed  " );
-
-            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed01");
-        }
-
-
-
-
-       // goHomeScreen();
+        goHomeScreen();
        // onDestroy();
-
-        System.out.println("Flow: SetTime : before finish  " );
-
-
-        Intent CloseApp = new Intent(getApplicationContext(),MainActivity.class);
-        CloseApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        CloseApp.putExtra("KILL","TRUE");
-        startActivity(CloseApp);
-
 
 
 

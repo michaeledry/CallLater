@@ -71,7 +71,7 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
 
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                handleServerResponse(dataSnapshot.getValue(String.class));
+                IsRecNotification = handleServerResponse(dataSnapshot.getValue(String.class));
 
             }
 
@@ -85,7 +85,7 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
 
     public boolean getisRecNotification()
     {
-        return PeerUserrResult;
+        return IsRecNotification;
     }
 
 

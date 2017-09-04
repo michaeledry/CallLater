@@ -10,6 +10,8 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -36,9 +38,7 @@
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="true">
-
-        </receiver>
+            android:exported="true" />
 
         <activity
             android:name=".LoginActivity"
@@ -55,7 +55,7 @@
         <activity
             android:name=".popupForServerUpdate"
             android:label="@string/title_activity_popup_for_server_update"
-            android:theme="@style/AppTheme.NoActionBar" />
+             />
 
         <service
             android:name=".KeepAliveService"
@@ -71,13 +71,38 @@
 
         <receiver
             android:name=".KeepAliveReciever"
+
             android:enabled="true"
             android:exported="true" />
 
         <service
             android:name=".RingtonePlayerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <receiver
+            android:name=".handleOutGoingCallReciever"
+            android:priority="1000"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".detectDndModeReciever"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.RINGER_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".LunchSleeperService"
+            android:enabled="true"
+            android:exported="true" />
+
     </application>
 
 </manifest>

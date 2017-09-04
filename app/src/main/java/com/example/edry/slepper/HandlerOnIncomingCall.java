@@ -53,6 +53,8 @@ public class HandlerOnIncomingCall  extends OnCallDatabase{
 
             case 2:
 
+                ActionHandler.ListenForCallStatus(Cref.child(ActiveUsersPath).child(this.myPhoneNumber),Cref.child(ActiveUsersPath).child(this.myPhoneNumber).child("Emergency"));
+
                 break;
 
             default:

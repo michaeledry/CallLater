@@ -31,44 +31,39 @@ public class MyReceiver extends BroadcastReceiver {
 
         PhoneState = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
 
-        if(intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL))
 
-            handleOnOutgoingCall(context, intent);
+        int curState = getState();
 
-        else {
+        switch (curState) {
 
-            int curState = getState();
+            case TelephonyManager.CALL_STATE_IDLE:
 
-            switch (curState) {
+                handleOnIdleState(context, intent);
 
-                case TelephonyManager.CALL_STATE_IDLE:
+                break;
 
-                    handleOnIdleState(context, intent);
+            case TelephonyManager.CALL_STATE_RINGING:
 
-                    break;
+                handleOnIncomingCall(context, intent);
 
-                case TelephonyManager.CALL_STATE_RINGING:
+                break;
 
-                    handleOnIncomingCall(context, intent);
+            case TelephonyManager.CALL_STATE_OFFHOOK:
 
-                    break;
+                handleHookUpState( context,  intent);
 
-                case TelephonyManager.CALL_STATE_OFFHOOK:
+                break;
 
-                    handleHookUpState( context,  intent);
-
-                    break;
-
-                default:
+            default:
 
 
-                    break;
+                break;
 
 
-            }
-
-            System.out.println("Flow: MyReceiver : case " + curState);
         }
+
+        System.out.println("Flow: MyReceiver : case " + curState);
+
 
         System.out.println("Flow: MyReceiver : onReceive  " + intent.getAction() + adiitionalPhoneNumber);
 
@@ -82,17 +77,6 @@ public class MyReceiver extends BroadcastReceiver {
 
     }
 
-    private void handleOnOutgoingCall(Context context, Intent intent)
-    {
-
-
-        adiitionalPhoneNumber = intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER);
-        Intent newCallOutIntent = new Intent(context, ServerConnection.class);
-            newCallOutIntent.putExtra("EXTRA_STATE", "outGoingCall");
-            newCallOutIntent.putExtra("EXTRA_NUMBER", adiitionalPhoneNumber);
-            context.startService(newCallOutIntent);
-
-    }
 
     private void handleOnIncomingCall(Context context, Intent intent)
 

@@ -17,18 +17,6 @@
         tools:layout_editor_absoluteX="8dp" />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="16dp" />
-
     <Button
         android:id="@+id/BstartApp"
         android:layout_width="wrap_content"
@@ -50,11 +38,11 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/Blogoutuser"
+        android:id="@+id/PendAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="129dp"
-        android:text="Log out"
+        android:text="Exit"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center_horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/include"
@@ -92,13 +80,5 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="55dp" />
-
-    <Button
-        android:id="@+id/PendAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exit"
-        tools:layout_editor_absoluteX="240dp"
-        tools:layout_editor_absoluteY="390dp" />
 
 </android.support.constraint.ConstraintLayout>

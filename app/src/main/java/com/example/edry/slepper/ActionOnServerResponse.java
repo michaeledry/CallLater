@@ -2,7 +2,9 @@ package com.example.edry.slepper;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.telephony.SmsManager;
 import android.view.WindowManager;
 
@@ -50,6 +52,7 @@ public class ActionOnServerResponse {
         }
         finally {
             myContext.startActivity(newIntent);
+
         }
 
     }

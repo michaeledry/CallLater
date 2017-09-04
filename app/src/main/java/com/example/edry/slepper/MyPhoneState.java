@@ -50,8 +50,8 @@ public class MyPhoneState extends PhoneStateListener{
 
                     context.stopService(ringerServic);
 
-                    //if(MyVolume.)
-                    MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0,0);
+                    MyVolume.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0,0);
+                    //MyVolume.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
 
                 } catch (Exception e) {
@@ -68,7 +68,10 @@ public class MyPhoneState extends PhoneStateListener{
             case 1:
                 try {
 
-                   MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
+                   //MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
+                    //MyVolume.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+
+                    MyVolume.setStreamVolume(AudioManager.STREAM_NOTIFICATION,2, 0);
 
                    Intent ringerServic = new Intent(context,RingtonePlayerService.class);
 
@@ -91,10 +94,10 @@ public class MyPhoneState extends PhoneStateListener{
 
 
                 break;
-            case 2:
+            case 4:
 
                 try {
-                    MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
+                    //MyVolume.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
 
                 }
                 catch (Exception e) {

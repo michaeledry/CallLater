@@ -8,7 +8,6 @@
     <string name="title_activity_phone_login">phoneLoginActivity</string>
 
 
-
     <string name="start_phone_auth">Start</string>
     <string name="verify_phone_auth">Verify</string>
     <string name="resend_phone_auth">Resend</string>
