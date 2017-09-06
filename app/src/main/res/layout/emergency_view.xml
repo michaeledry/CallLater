@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@color/common_google_signin_btn_text_dark_default">
+
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Approve" />
+
+    <Button
+        android:id="@+id/DismissButton"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:text="Dismiss" />
+
+    <TextView
+        android:id="@+id/EmergencyText"
+        android:layout_width="match_parent"
+        android:layout_height="107dp"
+        android:layout_marginTop="50dp"
+        android:autoText="false"
+        android:cursorVisible="true"
+        android:gravity="center"
+        android:text="Approve or Dismiss"
+        android:textSize="36sp" />
+
+</FrameLayout>

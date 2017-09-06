@@ -16,13 +16,16 @@ public class handleOutGoingCallReciever extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
 
-        System.out.println("Flow: handleOutGoingCallReciever : onReceive") ;
 
         mAuth = FirebaseAuth.getInstance();
 
         user = mAuth.getCurrentUser();
 
+        System.out.println("Flow: handleOutGoingCallReciever : onReceive " + user.getPhoneNumber()) ;
+
         if (user != null) {
+
+            System.out.println("Flow: handleOutGoingCallReciever : user is not null") ;
 
             adiitionalPhoneNumber = intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER);
 

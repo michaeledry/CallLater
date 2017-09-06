@@ -7,6 +7,10 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Created by edry on 16/08/2017.
  */
@@ -59,9 +63,18 @@ public class keepAlive extends RealTimeDatabase {
     }
     public void  updateTimeStempEntry()
     {
-        Long  TimeStemp = System.currentTimeMillis();
 
-        Cref.child(KeepAlivePath).child(myPhoneNumber).child(TimeStempPath).setValue(TimeStemp);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+
+        sdf.setTimeZone(TimeZone.getDefault());
+
+        String currentDateandTime = sdf.format(new Date());
+
+        if(Cref==null)
+
+            System.out.println("Flow: updateTimeStempEntry : nul!!! ");
+
+        Cref.child(KeepAlivePath).child(myPhoneNumber).child(TimeStempPath).setValue(currentDateandTime);
     }
 
 

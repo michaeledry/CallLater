@@ -3,7 +3,6 @@ package com.example.edry.slepper;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
-import android.widget.Toast;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -12,19 +11,28 @@ import android.widget.Toast;
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
-public class appTermination extends IntentService {
+public class StopSleeperService extends IntentService {
 
-    public appTermination() {
-        super("appTermination");
+
+
+    public StopSleeperService() {
+        super("StopSleeperService");
     }
 
 
+
+
+
+
+    @Override
     protected void onHandleIntent(Intent intent) {
 
-        //Toast.makeText(getApplicationContext(),"Job Done",Toast.LENGTH_LONG).show();
-        //System.out.println("Flow: appTermination ");
-        //MyReceiver rec = (MyReceiver) intent.getSerializableExtra("BReciever");
-        //unregisterReceiver(rec);
+        System.out.println("Flow: StopSleeperService : sleep ");
+
+        Intent newCallOutIntent = new Intent(getApplicationContext(), LunchSleeperService.class);
+
+        stopService(newCallOutIntent);
     }
+
 
 }

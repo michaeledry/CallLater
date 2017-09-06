@@ -54,15 +54,11 @@
 
         <activity
             android:name=".popupForServerUpdate"
-            android:label="@string/title_activity_popup_for_server_update"
-             />
+            android:label="@string/title_activity_popup_for_server_update" />
 
         <service
             android:name=".KeepAliveService"
             android:enabled="true" />
-        <service
-            android:name=".appTermination"
-            android:exported="false" />
 
         <activity
             android:name=".phoneLoginActivity"
@@ -71,7 +67,6 @@
 
         <receiver
             android:name=".KeepAliveReciever"
-
             android:enabled="true"
             android:exported="true" />
 
@@ -82,9 +77,9 @@
 
         <receiver
             android:name=".handleOutGoingCallReciever"
-            android:priority="1000"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:priority="1000">
             <intent-filter>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
@@ -102,7 +97,9 @@
             android:name=".LunchSleeperService"
             android:enabled="true"
             android:exported="true" />
-
+        <service
+            android:name=".StopSleeperService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

@@ -56,7 +56,7 @@ public class HandlerOnOutgoingCall extends OnCallDatabase{
         }
 
 
-        return (ans == 1) ? true : false;
+        return true ;
 
     }
 

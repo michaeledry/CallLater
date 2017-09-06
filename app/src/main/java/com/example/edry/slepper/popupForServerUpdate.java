@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 import android.app.AlertDialog;
@@ -27,6 +28,9 @@ public class popupForServerUpdate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(android.R.style.Theme_Dialog);
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.DECOR_CAPTION_SHADE_AUTO);
+
         setContentView(R.layout.activity_popup_for_server_update);
        DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

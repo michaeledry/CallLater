@@ -7,6 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 
 public class LunchSleeperService extends Service {
 
@@ -16,6 +26,7 @@ public class LunchSleeperService extends Service {
 
     private MyReceiver Caller_Receiver = null;
     private IntentFilter filter = null;
+
 
 
     public LunchSleeperService() {
@@ -28,6 +39,10 @@ public class LunchSleeperService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId)
     {
+        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+
+        System.out.println("Flow: LunchSleeperService : sleep till " + (long)intent.getLongExtra("PERIOD",0)) ;
+
         alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
         Intent intentI = new Intent(getApplicationContext(), KeepAliveReciever.class);
@@ -54,7 +69,7 @@ public class LunchSleeperService extends Service {
 
     public void onDestroy()
     {
-        System.out.println("Flow: RingtonePlayerService : onDestroy ") ;
+        System.out.println("Flow: LunchSleeperService : onDestroy ") ;
 
         DisconnectionMassage jobDone = new DisconnectionMassage(getApplicationContext());
 
@@ -93,4 +108,5 @@ public class LunchSleeperService extends Service {
 
 
     }
+
 }

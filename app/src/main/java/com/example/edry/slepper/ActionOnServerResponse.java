@@ -38,10 +38,9 @@ public class ActionOnServerResponse {
 
     public void  openPopUpForUI()
     {
-        Intent newIntent = new Intent(myContext, popupForServerUpdate.class);
-        newIntent.putExtra("phoneNum", peerPhoneNumber);
-        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         System.out.println("Flow: open popup: ") ;
+
         try
         {
             Thread.sleep(5000);
@@ -51,8 +50,8 @@ public class ActionOnServerResponse {
             e.printStackTrace();
         }
         finally {
-            myContext.startActivity(newIntent);
 
+            EmergencyWindow temp = new EmergencyWindow(myContext,peerPhoneNumber) ;
         }
 
     }

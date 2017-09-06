@@ -63,9 +63,14 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
     {
         this.setRealTimeDatabaseChanges(Cref.child(ActiveUsersPath));
 
-
-
         DatabaseReference peer = Cref.child(KeepAlivePath).child(PhoneNum).child(KeepAliveStatusPath);
+
+        if(peer == null) {
+
+            IsRecNotification = true;
+
+            return;
+        }
 
         peer.addListenerForSingleValueEvent(new ValueEventListener() {
 
