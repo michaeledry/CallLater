@@ -26,9 +26,9 @@ public class DisconnectionMassage extends RealTimeDatabase {
 
 
 
-    public DisconnectionMassage(Context contex)
+    public DisconnectionMassage()
     {
-        super(contex, status);
+        super(status);
         Cref = FirebaseDatabase.getInstance().getReference();
         setRealTimeDatabaseChanges(Cref.child("KeepAlive"));
         updateRingerLevelEntry();

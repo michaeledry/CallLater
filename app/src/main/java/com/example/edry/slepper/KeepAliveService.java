@@ -26,6 +26,7 @@ public class KeepAliveService extends IntentService {
         keepAliveMassage.updatedndLevelEntry();
         keepAliveMassage.updateRingerLevelEntry();
         keepAliveMassage.updateTimeStempEntry();
+        keepAliveMassage.endConnection();
 
     }
 

@@ -22,9 +22,9 @@ public class DisconnectionActiveUserMassage extends RealTimeDatabase {
     //
 
 
-    public DisconnectionActiveUserMassage(Context contex, String status) {
+    public DisconnectionActiveUserMassage( String status) {
 
-        super(contex, status);
+        super(status);
 
         DatabaseReference statusRef = FirebaseDatabase.getInstance().getReference().child(ActiveUsersPath);
 

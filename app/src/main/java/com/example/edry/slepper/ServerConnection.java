@@ -48,7 +48,6 @@ public class ServerConnection extends IntentService {
         PhoneState = intent.getExtras().getString("EXTRA_STATE");
 
 
-
         if(PhoneState.equals("IncomingCall"))
 
             FlowOnIncomingNumber();
@@ -87,7 +86,9 @@ public class ServerConnection extends IntentService {
             e.printStackTrace();
         }
 
+        outGoingCallData.endConecction();
         System.out.println("Flow: FlowOnOutgoingNumber : Done ");
+
 
 
     }
@@ -117,6 +118,8 @@ public class ServerConnection extends IntentService {
         System.out.println("Flow: FlowOnIncomingNumber : Done ");
 
         IncomingCallData.removeListener();
+
+        IncomingCallData.endConecction();
 
 
     }

@@ -21,8 +21,8 @@ public class OffUserMassge extends RealTimeDatabase {
     private DatabaseReference Cref;
 
 
-    public OffUserMassge(Context contex) {
-        super(contex, status);
+    public OffUserMassge() {
+        super( status);
         Cref = FirebaseDatabase.getInstance().getReference().child(ActiveUsersPath);
         setRealTimeDatabaseChanges(Cref);
     }

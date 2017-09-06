@@ -130,4 +130,37 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("Flow: MainActivity : onStop() ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("Flow: MainActivity : onDestroy() ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("Flow: MainActivity : onPause() ");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("Flow: MainActivity : onStart() ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("Flow: MainActivity : onResume() ");
+
+    }
+
 }

@@ -47,11 +47,13 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
 
     public OnCallDatabase(Context contex, String PhoneNum) {
 
-        super(contex, BussyStatus);
+        super( BussyStatus);
 
         this.PhoneNum = PhoneNum;
 
         Cref = FirebaseDatabase.getInstance().getReference();
+
+        Cref.goOnline();
 
         myContex = contex;
     }
@@ -69,7 +71,6 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
 
             IsRecNotification = true;
 
-            return;
         }
 
         peer.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -94,7 +95,10 @@ public abstract class OnCallDatabase extends RealTimeDatabase {
     }
 
 
-
+    public void endConecction()
+    {
+        Cref.goOffline();
+    }
 
 
     protected int CaseResponse(String Response , String ansToCompare)

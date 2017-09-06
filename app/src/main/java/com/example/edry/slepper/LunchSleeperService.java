@@ -43,6 +43,8 @@ public class LunchSleeperService extends Service {
 
         System.out.println("Flow: LunchSleeperService : sleep till " + (long)intent.getLongExtra("PERIOD",0)) ;
 
+
+
         alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
         Intent intentI = new Intent(getApplicationContext(), KeepAliveReciever.class);
@@ -50,6 +52,8 @@ public class LunchSleeperService extends Service {
         alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intentI, 0);
 
         alarmMgr.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 1000 * 60, alarmIntent);
+
+
 
         keepAlive keepAliveMassage = new keepAlive(getApplicationContext());
 
@@ -61,7 +65,7 @@ public class LunchSleeperService extends Service {
 
         registerReceiver(Caller_Receiver, filter);
 
-        DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Available");
+        DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage("Available");
 
         return START_NOT_STICKY;
 
@@ -71,9 +75,9 @@ public class LunchSleeperService extends Service {
     {
         System.out.println("Flow: LunchSleeperService : onDestroy ") ;
 
-        DisconnectionMassage jobDone = new DisconnectionMassage(getApplicationContext());
+        DisconnectionMassage jobDone = new DisconnectionMassage();
 
-        OffUserMassge OffStatusmassage = new OffUserMassge(getApplicationContext());
+        OffUserMassge OffStatusmassage = new OffUserMassge();
 
         MyPhoneState TakeActionOnCall = new MyPhoneState();
 
@@ -87,7 +91,7 @@ public class LunchSleeperService extends Service {
             e.printStackTrace();
             System.out.println("Flow: SetTime : crashed alarmMgr " );
 
-            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed02");
+            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage("Crashed02");
         }
 
         try
@@ -103,7 +107,7 @@ public class LunchSleeperService extends Service {
 
             System.out.println("Flow: SetTime : crashed  " );
 
-            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage(getApplicationContext(),"Crashed01");
+            DisconnectionActiveUserMassage errorLogInFBServer = new DisconnectionActiveUserMassage("Crashed01");
         }
 
 

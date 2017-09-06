@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 public class MyReceiver extends BroadcastReceiver {
 
-    private static int lastState = 0;
 
     public MyReceiver() {
         super();
@@ -30,6 +29,11 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         PhoneState = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
+
+        Intent newIn = new Intent(context,MainActivity.class);
+
+        context.startActivity(newIn);
+
 
 
         int curState = getState();
@@ -98,7 +102,7 @@ public class MyReceiver extends BroadcastReceiver {
         Intent newIntent = new Intent(context, ServerConnection.class);
         context.stopService(newIntent);
         MyPhoneState TakeActionOnCall = new MyPhoneState();
-        DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage(context,"Available");
+        DisconnectionActiveUserMassage EndSession = new DisconnectionActiveUserMassage("Available");
         TakeActionOnCall.onCallStateChanged(context,0,null);
 
     }
@@ -117,7 +121,7 @@ public class MyReceiver extends BroadcastReceiver {
     private int getState( )
     {
 
-        int state = 0;
+        int state = -1;
         if(PhoneState.equals("IDLE")){
             state = TelephonyManager.CALL_STATE_IDLE;
         }

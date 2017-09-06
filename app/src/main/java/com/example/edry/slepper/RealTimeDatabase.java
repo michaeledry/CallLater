@@ -28,11 +28,12 @@ public abstract class RealTimeDatabase {
     FirebaseUser user;
 
 
-    public RealTimeDatabase(Context contex ,  String status )
+
+
+    public RealTimeDatabase( String status )
 
     {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        TelephonyManager vol = (TelephonyManager) contex.getSystemService(Context.TELEPHONY_SERVICE);
         this.status = status;
         myPhoneNumber = "0" + user.getPhoneNumber().substring(4);
 
@@ -54,4 +55,7 @@ public abstract class RealTimeDatabase {
         status = newStatus;
         setRealTimeDatabaseChanges(ref);
     }
+
+
+
 }

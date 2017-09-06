@@ -55,7 +55,7 @@ public class EmergencyWindow extends PopUpWindow  implements View.OnClickListene
 
             case R.id.confirmButton:
 
-                    SignalPeerMassage msg = new SignalPeerMassage(myContext, phoneNumber);
+                    SignalPeerMassage msg = new SignalPeerMassage( phoneNumber);
 
                 break;
 

@@ -33,9 +33,10 @@ public class keepAlive extends RealTimeDatabase {
 
     public keepAlive(Context contex) {
 
-        super(contex , status );
+        super(status );
         Cref = FirebaseDatabase.getInstance().getReference();
         MyVolume =  (AudioManager)contex.getSystemService(Context.AUDIO_SERVICE);
+        Cref.goOnline();
 
     }
 
@@ -61,6 +62,7 @@ public class keepAlive extends RealTimeDatabase {
 
         Cref.child(KeepAlivePath).child(myPhoneNumber).child(dndPath).setValue(DND);
     }
+
     public void  updateTimeStempEntry()
     {
 
@@ -77,5 +79,9 @@ public class keepAlive extends RealTimeDatabase {
         Cref.child(KeepAlivePath).child(myPhoneNumber).child(TimeStempPath).setValue(currentDateandTime);
     }
 
+    public void endConnection()
+    {
+        Cref.goOffline();
+    }
 
 }

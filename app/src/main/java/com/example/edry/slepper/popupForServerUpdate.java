@@ -43,7 +43,7 @@ public class popupForServerUpdate extends AppCompatActivity {
         Buttom1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignalPeerMassage msg = new SignalPeerMassage(getApplicationContext(), phoneNumber);
+                SignalPeerMassage msg = new SignalPeerMassage( phoneNumber);
                 finish();
             }
         });
@@ -66,7 +66,7 @@ public class popupForServerUpdate extends AppCompatActivity {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SignalPeerMassage msg = new SignalPeerMassage(getApplicationContext(), phoneNumber);
+                        SignalPeerMassage msg = new SignalPeerMassage( phoneNumber);
 
                         dialog.cancel();
 

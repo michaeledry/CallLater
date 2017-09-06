@@ -28,10 +28,10 @@ public class SignalPeerMassage extends RealTimeDatabase {
 
     protected static String PhoneNum;
 
-    public SignalPeerMassage(Context contex ,String PhoneNum )
+    public SignalPeerMassage(String PhoneNum )
     {
 
-        super(contex, status);
+        super(status);
 
         this.PhoneNum = PhoneNum;
 
