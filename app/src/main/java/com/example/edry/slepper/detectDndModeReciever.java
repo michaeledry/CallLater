@@ -1,5 +1,6 @@
 package com.example.edry.slepper;
 
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
@@ -41,11 +42,19 @@ public class detectDndModeReciever extends BroadcastReceiver {
             switch (MyVolume.getRingerMode()) {
                 case AudioManager.RINGER_MODE_SILENT:
 
-                    startSleeperWindow Slper = new startSleeperWindow(context);
+                    if(! isMyServiceRunning(LunchSleeperService.class,context)) {
+
+                        startSleeperWindow Slper = new startSleeperWindow(context);
+                    }
 
                     break;
 
                 case AudioManager.RINGER_MODE_NORMAL:
+
+                    if(isMyServiceRunning(LunchSleeperService.class,context)) {
+
+                        StopSleeperWindow Slper = new StopSleeperWindow(context);
+                    }
 
                     break;
 
@@ -62,6 +71,16 @@ public class detectDndModeReciever extends BroadcastReceiver {
             }
 
         }
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass , Context context) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

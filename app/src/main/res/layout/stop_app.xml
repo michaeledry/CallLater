@@ -7,27 +7,28 @@
 
 
     <Button
-        android:id="@+id/confirmButton"
+        android:id="@+id/ExitButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Approve" />
+        android:text="yes" />
 
     <Button
-        android:id="@+id/DismissButton"
+        android:id="@+id/KeepRemainingButton"
         android:layout_width="181dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:text="Dismiss" />
+        android:text="no" />
 
     <TextView
-        android:id="@+id/EmergencyText"
+        android:id="@+id/StopAppText"
         android:layout_width="match_parent"
         android:layout_height="107dp"
         android:layout_marginTop="50dp"
+        android:autoText="false"
         android:cursorVisible="true"
         android:gravity="center"
-        android:text="Approve or Dismiss"
+        android:text="Stop Sleeper?"
         android:textSize="36sp" />
 
 </FrameLayout>

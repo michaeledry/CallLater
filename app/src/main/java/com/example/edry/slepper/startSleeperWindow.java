@@ -35,6 +35,8 @@ public class startSleeperWindow extends PopUpWindow {
     public void setScreenContent() {
         Button confirm = (Button)  floatyView.findViewById(R.id.confirmButton);
 
+        Button ExitButton  = (Button) floatyView.findViewById(R.id.ExitButton);
+
         timePicker = (TimePicker) floatyView.findViewById(R.id.simpleTimePicker);
 
         timePicker.setIs24HourView(true);
@@ -67,7 +69,7 @@ public class startSleeperWindow extends PopUpWindow {
 
 
                 PendingIntent pi = PendingIntent.getService(myContext, 0,
-                        new Intent(myContext, StopSleeperService.class), PendingIntent.FLAG_NO_CREATE);
+                        new Intent(myContext, StopSleeperService.class), 0);
                 AlarmManager am = (AlarmManager) myContext.getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), pi);
 
@@ -78,6 +80,13 @@ public class startSleeperWindow extends PopUpWindow {
 
                 removeView();
 
+            }
+        });
+
+        ExitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeView();
             }
         });
     }

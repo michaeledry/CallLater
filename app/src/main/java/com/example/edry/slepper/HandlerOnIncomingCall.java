@@ -18,6 +18,7 @@ public class HandlerOnIncomingCall  extends OnCallDatabase{
 
 
     ActionOnServerResponse ActionHandler;
+
     DatabaseReference refStatus;
 
     public HandlerOnIncomingCall(Context contex, String PhoneNum) {
