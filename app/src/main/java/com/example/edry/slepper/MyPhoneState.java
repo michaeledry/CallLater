@@ -71,7 +71,7 @@ public class MyPhoneState extends PhoneStateListener{
                    //MyVolume.setStreamVolume(AudioManager.STREAM_RING, MyVolume.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
                     //MyVolume.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
-                    MyVolume.setStreamVolume(AudioManager.STREAM_NOTIFICATION,2, 0);
+                    MyVolume.setStreamVolume(AudioManager.STREAM_NOTIFICATION,MyVolume.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION), 0);
 
                    Intent ringerServic = new Intent(context,RingtonePlayerService.class);
 

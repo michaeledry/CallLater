@@ -54,7 +54,7 @@ public class detectDndModeReciever extends BroadcastReceiver {
 
                 case AudioManager.RINGER_MODE_NORMAL:
 
-                    if(isMyServiceRunning(LunchSleeperService.class,context)) {
+                    if(isMyServiceRunning(LunchSleeperService.class,context) && MyVolume.getStreamVolume(AudioManager.STREAM_RING) == 1) {
 
                         StopSleeperWindow Slper = new StopSleeperWindow(context);
                     }
