@@ -21,19 +21,21 @@ public class handleOutGoingCallReciever extends BroadcastReceiver {
 
         user = mAuth.getCurrentUser();
 
-        System.out.println("Flow: handleOutGoingCallReciever : onReceive " + user.getPhoneNumber()) ;
-
         if (user != null) {
 
-            System.out.println("Flow: handleOutGoingCallReciever : user is not null") ;
-
             adiitionalPhoneNumber = intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER);
+
+            if(adiitionalPhoneNumber.charAt(0)=='+')
+
+                adiitionalPhoneNumber = "0"+ adiitionalPhoneNumber.substring(4);
 
             Intent newCallOutIntent = new Intent(context, ServerConnection.class);
 
             newCallOutIntent.putExtra("EXTRA_STATE", "outGoingCall");
 
             newCallOutIntent.putExtra("EXTRA_NUMBER", adiitionalPhoneNumber);
+
+            System.out.println("Flow: handleOutGoingCallReciever : " + adiitionalPhoneNumber) ;
 
             context.startService(newCallOutIntent);
         }

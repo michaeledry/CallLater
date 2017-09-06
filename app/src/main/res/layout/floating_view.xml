@@ -9,8 +9,7 @@
         android:id="@+id/simpleTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:timePickerMode="spinner" />
+        android:layout_gravity="top" />
 
     <Button
         android:id="@+id/confirmButton"

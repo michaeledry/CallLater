@@ -34,12 +34,15 @@ public class detectDndModeReciever extends BroadcastReceiver {
 
     public void onReceive(final Context context, Intent intent) {
 
+        System.out.println("Flow: detectDndModeReciever : sleep till " ) ;
+
 
         AudioManager MyVolume =  (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 
         if(SetTime.onPeriod == false) {
 
             switch (MyVolume.getRingerMode()) {
+
                 case AudioManager.RINGER_MODE_SILENT:
 
                     if(! isMyServiceRunning(LunchSleeperService.class,context)) {

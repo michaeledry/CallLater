@@ -107,10 +107,10 @@ public class MyReceiver extends BroadcastReceiver {
     private void handleHookUpState(Context context, Intent intent)
     {
 
-        Intent ringerServic = new Intent(context,RingtonePlayerService.class);
+        //Intent ringerServic = new Intent(context,RingtonePlayerService.class);
 
 
-        context.stopService(ringerServic);
+        //context.stopService(ringerServic);
     }
 
 
