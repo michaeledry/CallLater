@@ -32,6 +32,8 @@ public class MyReceiver extends BroadcastReceiver {
 
         Intent newIn = new Intent(context,MainActivity.class);
 
+        newIn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(newIn);
 
 
